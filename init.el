@@ -57,8 +57,18 @@
 ; material theme
 (load-theme 'material t)
 
+; neotree sidebar dir browser
+(require 'neotree)
+(global-set-key [f8] 'neotree-toggle)
+
 ; enable elpy
 (elpy-enable)
+
+;; add smart completion
+(ido-mode 1)
+(setq ido-enable-flex-matching t)
+(setq ido-everywhere t)
+
 
 (defvar current-user
   (getenv
