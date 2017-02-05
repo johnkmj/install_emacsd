@@ -33,11 +33,32 @@
 
 ;;; Code:
 
+; enable line numbers
+(global-linum-mode 1)
+
+(require 'package) ;; You might already have this line
+(add-to-list 'package-archives
+             '("melpa" . "https://melpa.org/packages/"))
+(when (< emacs-major-version 24)
+  ;; For important compatibility libraries like cl-lib
+  (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
+
 ;; Added by Package.el.  This must come before configurations of
 ;; installed packages.  Don't delete this line.  If you don't want it,
 ;; just comment it out by adding a semicolon to the start of the line.
-;; You may delete these explanatory comments.
-;(package-initialize)
+;; You may delete these explanatory comments
+(package-initialize)
+
+; multiple cursors like in subl
+(require 'bind-key)
+(bind-key* "C-d" 'mc/mark-next-like-this)
+
+
+; material theme
+(load-theme 'material t)
+
+; enable elpy
+(elpy-enable)
 
 (defvar current-user
   (getenv
@@ -105,7 +126,7 @@ by Prelude.")
 (message "Loading Prelude's core...")
 
 ;; the core stuff
-(require 'prelude-packages)
+(require 'prelude-packages)             ;
 (require 'prelude-custom)  ;; Needs to be loaded before core, editor and ui
 (require 'prelude-ui)
 (require 'prelude-core)
